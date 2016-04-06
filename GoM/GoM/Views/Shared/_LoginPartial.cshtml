@@ -16,6 +16,9 @@ else
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <a href="/Checkout/Index"><span class="glyphicon glyphicon-shopping-cart"></span> @Database.Account.ShoppingCart.NumberOfProducts</a>              
+            </li>
+            <li>
                 @Html.ActionLink(Database.Account.FirstName, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off</a></li>
