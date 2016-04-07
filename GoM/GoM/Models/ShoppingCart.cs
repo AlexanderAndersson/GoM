@@ -16,22 +16,7 @@ namespace GoM.Models
 
         public List<Product> Products { get; set; }
 
-        public Account Account { get; set; }
-
-        public decimal Amount
-        {
-            get
-            {
-                decimal amount = 0;
-
-                foreach (var item in Products)
-                {
-                    amount += item.Album.Price;
-                }
-
-                return amount;
-            }
-        }
+        public decimal Amount { get { return Products.Sum(p => p.Album.Price); } }
 
         public int NumberOfProducts { get { return Products.Count(); } }
     }
