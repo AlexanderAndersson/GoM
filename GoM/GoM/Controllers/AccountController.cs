@@ -15,13 +15,22 @@ namespace GoM.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register([Bind(Include = "Email, Password, FirstName, LastName, Address")]Account account)
+        [HttpParamAction]
+        public ActionResult Register([Bind(Include = "Email, Password, FirstName, LastName, Address")]RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                account.Id = Database.Accounts.Count() + 1;
-                Database.Accounts.Add(account);
+                var account = new Account
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Address = user.Address,
+                    Id = Database.Accounts.Count() + 1
+                };
 
+                Database.Accounts.Add(account);
                 Database.Account = account;
 
                 return RedirectToAction("Index", "Products");
@@ -36,6 +45,7 @@ namespace GoM.Controllers
         }
 
         [HttpPost]
+        [HttpParamAction]
         public ActionResult LogIn([Bind(Include = "Email, Password")]LogInViewModel user)
         {
             if (ModelState.IsValid)
@@ -53,6 +63,11 @@ namespace GoM.Controllers
                 }
             }
 
+            return View();
+        }
+
+        public ActionResult LogInRegister()
+        {
             return View();
         }
 

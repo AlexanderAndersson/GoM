@@ -22,6 +22,11 @@ namespace GoM.Controllers
 
             if (album.InStock > 0)
             {
+                if (Database.Account == null)
+                {
+                    return RedirectToAction("LogInRegister", "Account");
+                }
+
                 Database.Account.ShoppingCart.Products.Add(new Product { Album = album });
                 album.InStock--;
             }

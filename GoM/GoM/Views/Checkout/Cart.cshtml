@@ -23,23 +23,14 @@
                 <p>In Stock: @product.Album.InStock</p>
                 @if (product.Album.InStock > 0)
                 {
-                    @*<form class="form-inline">
+                    <form action="ChangeQuantity" method="post" class="form-inline">
                         <div class="form-group">
                             <label>Qty:</label>
-                            <input type="number" value="@Database.Account.ShoppingCart.Products.Where(p => p.Album.Title == product.Album.Title).Count()" class="form-control">
+                            <input type="hidden" name="id" value="@product.Album.Id" />
+                            <input type="number" name="quantity" value="@Database.Account.ShoppingCart.Products.Where(p => p.Album.Title == product.Album.Title).Count()" class="form-control">
+                            <input type="submit" @*name="ChangeQuantity"*@ class="btn btn-danger form-control" value="Add to cart"  />
                         </div>
-                        <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> @Html.ActionLink("Add To Cart", "AddToCart", new { product.Album.Id })</button>
-                    </form>*@
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label>Qty:</label>
-                            <input type="number" value="@Database.Account.ShoppingCart.Products.Where(p => p.Album.Title == product.Album.Title).Count()" class="form-control">
-                            <input type="submit" name="addToCart" class="btn btn-danger form-control" value="Add to cart"  />
-                        </div>
-                        @*<a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</a>*@
                     </form>
-
                 }
 
                 else
