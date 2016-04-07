@@ -17,12 +17,12 @@ namespace GoM.Controllers
 
         public ActionResult AddToCart(int id)
         {
-            var account = Database.Accounts.Where(a => a.Id == 1).First();
+            //var account = Database.Accounts.Where(a => a.Id == 1).First();
             var album = Database.Albums.Where(a => a.Id == id).First();          
 
             if (album.InStock > 0)
             {
-                account.ShoppingCart.Products.Add(new Product { Album = album });
+                Database.Account.ShoppingCart.Products.Add(new Product { Album = album });
                 album.InStock--;
             }
 
