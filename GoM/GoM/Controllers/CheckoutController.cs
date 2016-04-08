@@ -27,21 +27,18 @@ namespace GoM.Controllers
             int id = Convert.ToInt32(Request.Form.Get("id"));
             var album = Database.Albums.Where(a => a.Id == id).First();
 
-            //Rensar varukorgen för de befintliga albumen av den typen
-            Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album == album);
-
             //Hämtar antalet från input
             int quantity = Convert.ToInt32(Request.Form.Get("quantity"));
 
-            for (int i = 0; i < quantity; i++)
+            if (quantity == 0)
             {
-                if (album.InStock > 0)
-                {
-                    var product = new Product { Album = album };
-                    Database.Account.ShoppingCart.Products.Add(product);
+                Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album == album);
+            }
 
-                    album.InStock--;
-                }
+            else
+            {
+                //var product = new Product { Album = album, Quantity = quantity };
+                Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
             }
           
             return RedirectToAction("Cart");
