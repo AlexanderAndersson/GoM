@@ -163,6 +163,7 @@
     <Compile Include="Helpers\Genre.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\HttpParamActionAttribute.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
@@ -187,6 +188,7 @@
     <Content Include="Views\Checkout\Cart.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Account\LogInRegister.cshtml" />
+    <Content Include="Views\Checkout\CompleteOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

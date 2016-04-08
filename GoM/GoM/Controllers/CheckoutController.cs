@@ -15,6 +15,11 @@ namespace GoM.Controllers
             return View(Database.Account.ShoppingCart.Products);
         }
 
+        public ActionResult CompleteOrder()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult ChangeQuantity()
         {

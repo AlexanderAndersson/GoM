@@ -10,35 +10,41 @@
 <div class="container margin-top-30">
     <h3>Sum: $@Database.Account.ShoppingCart.Amount</h3>
     <div class="row">
-        @foreach (var product in Model)
+        <div class="col-md-9">
+            @foreach (var product in Model)
             {
-            <div class="col-md-4 margin-top-30">
-                <a href="#" class="thumbnail">
-                    <img src="@product.Album.ImageSource" />
-                </a>
-                <h3>@product.Album.Artist - @product.Album.Title</h3>
-                <h4>Price: $@product.Album.Price</h4>
-                <h4>Genre: @product.Album.Genre</h4>
-                <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
-                <p>In Stock: @product.Album.InStock</p>
-                @if (product.Album.InStock > 0)
+                <div class="col-md-4 margin-top-30">
+                    <a href="#" class="thumbnail">
+                        <img src="@product.Album.ImageSource" />
+                    </a>
+                    <h3>@product.Album.Artist - @product.Album.Title</h3>
+                    <h4>Price: $@product.Album.Price</h4>
+                    <h4>Genre: @product.Album.Genre</h4>
+                    <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
+                    <p>In Stock: @product.Album.InStock</p>
+                    @if (product.Album.InStock > 0)
                 {
-                    <form action="ChangeQuantity" method="post" class="form-inline">
-                        <div class="form-group">
-                            <label>Qty:</label>
-                            <input type="hidden" name="id" value="@product.Album.Id" />
-                            <input type="number" name="quantity" value="@Database.Account.ShoppingCart.Products.Where(p => p.Album.Id == product.Album.Id).Count()" class="form-control">
-                            <input type="submit" class="btn btn-danger form-control" value="Add to cart"  />
-                        </div>
-                    </form>
-                }
+                        <form action="ChangeQuantity" method="post" class="form-inline">
+                            <div class="form-group">
+                                <label>Qty:</label>
+                                <input type="hidden" name="id" value="@product.Album.Id" />
+                                <input type="number" name="quantity" value="@Database.Account.ShoppingCart.Products.Where(p => p.Album.Id == product.Album.Id).Count()" class="form-control">
+                                <input type="submit" class="btn btn-danger form-control" value="Add to cart" />
+                            </div>
+                        </form>
+                    }
 
-                else
-                {
-                    <h4 class="text-danger">Out of stock</h4>
-                }
-            </div>
-        }
+                    else
+                    {
+                        <h4 class="text-danger">Out of stock</h4>
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-md-3">
+            <a href="/Checkout/CompleteOrder" class="btn btn-danger">Complete Order</a>
+        </div>
+       
 
     </div>
 </div>
