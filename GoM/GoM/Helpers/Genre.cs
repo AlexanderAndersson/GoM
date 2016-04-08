@@ -10,6 +10,9 @@ namespace GoM.Helpers
         Rock,
         Pop,
         Blues,
-        Soul
+        Soul,
+        HipHop,
+        Reggae,
+        Grunge
     }
 }
