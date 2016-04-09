@@ -11,6 +11,8 @@ namespace GoM.Models
 
         public Album Album { get; set; }
 
+        public int Quantity { get; set; }
+
         public ShoppingCart ShoppingCart { get; set; }
 
     }

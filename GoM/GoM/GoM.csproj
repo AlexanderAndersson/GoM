@@ -124,7 +124,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Aqua.jpg" />
+    <Content Include="Images\BackInBlack.jpg" />
+    <Content Include="Images\BackstreetBoys.jpg" />
+    <Content Include="Images\BobMarley.jpg" />
+    <Content Include="Images\David.jpg" />
+    <Content Include="Images\DrDre.jpeg" />
+    <Content Include="Images\ElvisTheKing.jpg" />
+    <Content Include="Images\EminemInfinite.jpg" />
+    <Content Include="Images\GreenDay.jpg" />
+    <Content Include="Images\JohnLennon.jpg" />
     <Content Include="Images\mj-kingofpop.jpg" />
+    <Content Include="Images\Nirvana.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -149,6 +160,7 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\mustafasearch.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +169,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,7 +201,7 @@
     <Content Include="Views\Checkout\Cart.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Account\LogInRegister.cshtml" />
-    <Content Include="Views\Checkout\CompleteOrder.cshtml" />
+    <Content Include="Views\Checkout\Payment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

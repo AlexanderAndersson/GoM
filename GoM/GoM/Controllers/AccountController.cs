@@ -71,7 +71,7 @@ namespace GoM.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult LogOff()
         {
             Database.Account = null;

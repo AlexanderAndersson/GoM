@@ -16,7 +16,7 @@ namespace GoM.Models
 
         public List<Product> Products { get; set; }
 
-        public decimal Amount { get { return Products.Sum(p => p.Album.Price); } }
+        public decimal Amount { get { return Products.Sum(p => p.Album.Price * p.Quantity); } }
 
         public int NumberOfProducts { get { return Products.Count(); } }
     }

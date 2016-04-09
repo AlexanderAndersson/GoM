@@ -1,95 +1,93 @@
-﻿<!DOCTYPE html>
+﻿@using GoM.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Good ol' Music</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav id="navigationbar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarcollapse" aria-expanded="true">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                @Html.ActionLink("Good Ol' Music", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
+                <a class="navbar-brand" href="/Home/Index">
+                    <img class="logo" src="../images/logo.png" alt="Logo">
+                </a>
             </div>
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
-
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+            <div class="navbar-collapse collapse in" id="navbarcollapse" aria-expanded="true">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Products/Index">All Products</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Rock</a></li>
+                            <li><a href="#">Pop</a></li>
+                            <li><a href="#">Blues</a></li>
+                            <li><a href="#">Soul</a></li>
+                            <li><a href="#">Hip Hop</a></li>
+                            <li><a href="#">Reggae</a></li>
+                            <li><a href="#">Grunge</a></li>
+                        </ul>
+                    </li>
+                    <li style="padding: 15px">
+                        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                        {
+                            @Html.TextBox("SearchText")
+                            <input type="submit" value="Search" class="search-button" id="Get" />
+                        }
+                    </li>
                 </ul>
-                <div class="navbar-form navbar-right search-bar">
-                    <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
 
+                    @if (Database.Account == null)
+                    {
+                        <li><a href="/Account/Register">Register</a></li>
+                        <li><a href="/Account/LogIn">Log In</a></li>
+                    }
+
+                    else
+                    {
                         <li>
-                            @using(Html.BeginForm("Index", "Search", FormMethod.Get))
-
-                                {
-                                @Html.TextBox("SearchText")
-
-                                <input type="submit" value="Search" class="search-button" id="Get" />
-
-                                <br />
-                                }
+                            <a href="/Checkout/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> @Database.Account.ShoppingCart.NumberOfProducts</a>
                         </li>
-                    </ul>
-                </div>
+                        <li>
+                            <a href="/Account/Manage">@Database.Account.FirstName</a>
+                        </li>
+                        <li>
+                            <a href="/Account/LogOff">Log off</a>
+                        </li>
+                    }
 
-                @Html.Partial("_LoginPartial")
-
+                </ul>
             </div>
         </div>
-
-    </div>
-
-
-
+    </nav>
 
     <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Good ol' Music</p>
         </footer>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $("#SearchText").autocomplete({
-            source: function(request,response) {
-                $.ajax({
-                    url: "/Search/AutoCompleteArtist",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { label: item.Artist, value: item.Artist };
-                        }))
+    <script src="~/scripts/mustafasearch.js"></script>
 
-                    }
-                })
-            },
-            messages: {
-                noResults: "", results: ""
-            }
-        });
-    })
-
-    </script>
+    <script src="~/scripts/bootstrap.min.js"></script>
 
     @RenderSection("scripts", required: false)
 
