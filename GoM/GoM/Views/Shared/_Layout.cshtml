@@ -9,7 +9,8 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Sla"b" rel="styleshee"t'" type="text/css">
 </head>
 <body>
     <nav id="navigationbar" class="navbar navbar-inverse navbar-fixed-top">
@@ -42,11 +43,16 @@
                         </ul>
                     </li>
                     <li style="padding: 15px">
-                        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
-                        {
-                            @Html.TextBox("SearchText")
-                            <input type="submit" value="Search" class="search-button" id="Get" />
-                        }
+                        @*Sökrutan expanderar. Inte klar med css än men du kan flytta den var du vill*@
+                        @using(Html.BeginForm("Index", "Search", FormMethod.Get))
+                            {
+
+                            @Html.TextBox("SearchText", null, new { @class = "search-box" })
+
+                            <label for="search-box"><span class="fa fa-search search-icon"></span></label>
+                            <input type="submit" id="search-submit" />
+
+                            }
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
