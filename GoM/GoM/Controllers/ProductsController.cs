@@ -15,20 +15,13 @@ namespace GoM.Controllers
             return View(Database.Albums);
             }
 
-<<<<<<< HEAD
-        public ActionResult AddToCart(int id, string returnURL)
-            {
-            //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
-            //int id = Convert.ToInt32(Request.Form.Get("id"));
-            var album = Database.Albums.Where(a => a.Id==id).First();
-=======
+
         [HttpPost]
-        public ActionResult AddToCart(/*int id*/)
+        public ActionResult AddToCart(/*int id, string returnURL*/)
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
             var album = Database.Albums.Where(a => a.Id == id).First();
->>>>>>> master
 
             //Om albumet har behållning...
             if(album.InStock>0)
@@ -55,8 +48,8 @@ namespace GoM.Controllers
                     }
                 }
             //för att få Searchfunktionen att fungera. Den ger tillbaka samma result även när man addat, annars går den till index.
-            return Redirect(returnURL);
-            //return RedirectToAction("Index");
+            //return Redirect(returnURL);
+            return RedirectToAction("Index");
             }
         }
     }
