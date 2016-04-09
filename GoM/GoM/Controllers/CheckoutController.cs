@@ -15,7 +15,7 @@ namespace GoM.Controllers
             return View(Database.Account.ShoppingCart.Products);
         }
 
-        public ActionResult CompleteOrder()
+        public ActionResult Payment()
         {
             return View();
         }

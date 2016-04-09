@@ -17,7 +17,8 @@ namespace GoM.Controllers
 
         public ActionResult AddToCart(int id)
         {
-            //Hämtar albumet från databasen som motsvarar id:t.
+            //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
+            //int id = Convert.ToInt32(Request.Form.Get("id"));
             var album = Database.Albums.Where(a => a.Id == id).First();
 
             //Om albumet har behållning...

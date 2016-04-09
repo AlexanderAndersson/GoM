@@ -160,6 +160,7 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\mustafasearch.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +201,7 @@
     <Content Include="Views\Checkout\Cart.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Account\LogInRegister.cshtml" />
-    <Content Include="Views\Checkout\CompleteOrder.cshtml" />
+    <Content Include="Views\Checkout\Payment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

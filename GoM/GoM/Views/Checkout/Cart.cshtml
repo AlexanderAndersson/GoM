@@ -8,12 +8,11 @@
 
 
 <div class="container margin-top-30">
-    <h3>Sum: $@Database.Account.ShoppingCart.Amount</h3>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             @foreach (var product in Model)
             {
-                <div class="col-md-4 margin-top-30">
+                <div class="col-md-6 margin-top-45">
                     <a href="#" class="thumbnail">
                         <img src="@product.Album.ImageSource" />
                     </a>
@@ -23,7 +22,7 @@
                     <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
                     <p>In Stock: @product.Album.InStock</p>
                     @if (product.Album.InStock > 0)
-                {
+                    {
                         <form action="ChangeQuantity" method="post" class="form-inline">
                             <div class="form-group">
                                 <label>Qty:</label>
@@ -41,10 +40,35 @@
                 </div>
             }
         </div>
-        <div class="col-md-3">
-            <a href="/Checkout/CompleteOrder" class="btn btn-danger">Complete Order</a>
+        <div class="col-md-4 cart-summary margin-top-45">
+            <h4>Summary</h4>
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Qty</th>
+                        <th class="col-md-5">Title</th>
+                        <th class="col-md-3">Price</th>
+                        <th class="col-md-3">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td class="col-md-2">@product.Quantity</td>
+                            <td class="col-md-5">@product.Album.Artist - @product.Album.Title</td>
+                            <td class="col-md-3">@product.Album.Price</td>
+                            <td class="col-md-3">@(product.Album.Price * product.Quantity) </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <hr />
+            <p><strong>Total: $@Database.Account.ShoppingCart.Amount</strong></p>
+            <a href="/Checkout/Payment" class="btn btn-danger margin-bottom-15">Complete Order</a>
         </div>
-       
+
 
     </div>
 </div>
