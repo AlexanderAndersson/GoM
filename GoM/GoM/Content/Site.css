@@ -1,11 +1,12 @@
 ﻿
+.margin-top-30 {
+    margin-top: 30px;
+}
 body {
   margin: 5%;
   font-family:"Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.margin-top-30 {
-    margin-top: 30px;
-}
+
 
 .margin-top-45 {
     margin-top: 45px;
