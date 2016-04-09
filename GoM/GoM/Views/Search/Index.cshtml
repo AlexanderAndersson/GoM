@@ -18,19 +18,19 @@
                 <p>Number Of Tracks: @album.NumberOfSongs</p>
                 <p>In Stock: @album.InStock</p>
                 @if (album.InStock > 0)
-                {
+                    {
                     <form action="/Products/AddToCart" method="post">
                         <input name="id" type="hidden" value="@album.Id" />
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
                     </form>
-                }
+                    }
 
                 else
-                {
+                    {
                     <h4 class="text-danger">Out of stock</h4>
-                }
+                    }
             </div>
-        }
+            }
 
     </div>
 </div>
