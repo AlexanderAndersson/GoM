@@ -4,7 +4,7 @@
     ViewBag.Title = "Products";
 }
 
-<div class="container margin-top-30">
+<div class="container margin-top-30 product">
     <div class="row">
         @foreach (var album in Model)
             {
@@ -19,7 +19,9 @@
                 <p>In Stock: @album.InStock</p>
                 @if (album.InStock > 0)
                 {
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> @Html.ActionLink("Add To Cart", "AddToCart", "Products", new { album.Id }, null)</button>
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart">
+                    @*Lagt till returnURL som skickar med URL addressen, hade problem med jag hamnade på product.index när jag adda saker jag sökt*@    
+                    </span> @Html.ActionLink("Add To Cart", "AddToCart", "Products", new { album.Id, returnUrl = Request.RawUrl }, null)</button>
                 }
 
                 else

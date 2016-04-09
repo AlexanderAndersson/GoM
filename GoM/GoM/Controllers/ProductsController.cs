@@ -15,7 +15,7 @@ namespace GoM.Controllers
             return View(Database.Albums);
         }
 
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, string returnURL)
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             //int id = Convert.ToInt32(Request.Form.Get("id"));
@@ -45,8 +45,9 @@ namespace GoM.Controllers
                     Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity++;
                 }
             }
-
-            return RedirectToAction("Index");
-        }
+            //för att få Searchfunktionen att fungera. Den ger tillbaka samma result även när man addat, annars går den till index.
+            return Redirect(returnURL);
+            //return RedirectToAction("Index");
+            }
     }
 }

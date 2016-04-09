@@ -21,7 +21,9 @@
                 <p>In Stock: @album.InStock</p>
                 @if(album.InStock>0)
                     {
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> @Html.ActionLink("Add To Cart", "AddToCart", new { album.Id })</button>
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span>
+                @*Fick det att funka med länka till controllern*@
+                 @Html.ActionLink("Add To Cart", "AddToCart", new { @controller = "Products", id = album.Id, returnUrl = Request.RawUrl }, null)</button>
                     }
 
                 else
