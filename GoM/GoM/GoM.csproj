@@ -136,7 +136,6 @@
     <Content Include="Images\JohnLennon.jpg" />
     <Content Include="Images\mj-kingofpop.jpg" />
     <Content Include="Images\Nirvana.jpg" />
-    <Content Include="Models\Nirvana.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -169,6 +168,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
