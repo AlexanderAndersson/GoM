@@ -4,11 +4,11 @@
     ViewBag.Title = "Products";
 }
 
-<div class="container margin-top-45">
+<div class="container">
     <div class="row">
         @foreach (var album in Model)
             {
-            <div class="col-md-4 col-sm-6 margin-top-30 product">
+            <div class="col-md-4 col-sm-6 product margin-top-30">
                 <a href="#" class="thumbnail">
                     <img src="@album.ImageSource" />
                 </a>

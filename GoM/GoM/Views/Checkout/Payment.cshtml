@@ -6,14 +6,14 @@
     ViewBag.Title = "Payment";
 }
 
-<div class="container margin-top-45">
+<div class="container">
     <div class="row">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4 class="margin-top-45">Shipping Information</h4>
+                <h4>Shipping Information</h4>
                 <hr />
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
