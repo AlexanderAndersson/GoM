@@ -1,6 +1,7 @@
 ﻿
 body {
   margin: 5%;
+  font-family:"Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .margin-top-30 {
     margin-top: 30px;
@@ -24,10 +25,7 @@ body {
 .margin-top-45 {
     margin-top: 45px;
 }
-.background{
-    background-color:#dfddc8;
-    font-family:"Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+
 .navbar-inverse{
     background-color:rgb(61, 71, 82); 
     color:black;
