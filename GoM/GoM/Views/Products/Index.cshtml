@@ -4,11 +4,11 @@
     ViewBag.Title = "Products";
 }
 
-<div class="container margin-top-30">
+<div class="container margin-top-45">
     <div class="row">
         @foreach (var album in Model)
             {
-            <div class="col-md-4 margin-top-30">
+            <div class="col-md-4 col-sm-6 margin-top-30 product">
                 <a href="#" class="thumbnail">
                     <img src="@album.ImageSource" />
                 </a>
@@ -19,7 +19,10 @@
                 <p>In Stock: @album.InStock</p>
                 @if (album.InStock > 0)
                 {
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> @Html.ActionLink("Add To Cart", "AddToCart", "Products", new { album.Id }, null)</button>
+                    <form action="/Products/AddToCart" method="post">
+                        <input name="id" type="hidden" value="@album.Id" />
+                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                    </form>
                 }
 
                 else

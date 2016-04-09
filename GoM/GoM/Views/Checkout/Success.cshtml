@@ -1,0 +1,58 @@
+﻿@model GoM.Models.Payment
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<h2>Confirmation</h2>
+
+<div>
+    <h3 class="text-center">Thank you for your purchase!</h3>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CvcNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CvcNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Continue Shopping", "Index", "Products")
+</p>
