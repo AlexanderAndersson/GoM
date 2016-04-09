@@ -25,22 +25,22 @@ namespace GoM.Models
 
         [Required]
         [Display(Name = "Card Number")]
-        [RegularExpression(@"\d{16}", ErrorMessage = "Must be 16 digits")]
-        public int CardNumber { get; set; }
+        [RegularExpression(@"\d{16}", ErrorMessage = "Måste bestå av 16 siffror")]
+        public long CardNumber { get; set; }
 
         [Required]
-        [Display(Name = "Expiration Month")]
-        [RegularExpression(@"\d{2}", ErrorMessage = "Must be 2 digits")]
+        [Display(Name = "Month")]
+        [RegularExpression(@"\d{2}", ErrorMessage = "Måste bestå av 2 siffror")]
         public int ExpirationMonth { get; set; }
 
         [Required]
-        [Display(Name = "Expiration Day")]
-        [RegularExpression(@"\d{2}", ErrorMessage = "Must be 2 digits")]
-        public int ExpirationDay { get; set; }
+        [Display(Name = "Year")]
+        [RegularExpression(@"\d{2}", ErrorMessage = "Måste bestå av 2 siffror")]
+        public int ExpirationYear { get; set; }
 
         [Required]
         [Display(Name = "CVC")]
-        [RegularExpression(@"\d{3}", ErrorMessage = "Must be 3 digits")]
+        [RegularExpression(@"\d{3}", ErrorMessage = "Måste bestå av 3 siffror")]
         public int CvcNumber { get; set; }
     }
 }

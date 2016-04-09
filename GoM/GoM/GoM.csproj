@@ -180,6 +180,7 @@
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\HttpParamActionAttribute.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
@@ -203,6 +204,7 @@
     <Content Include="Views\Account\LogInRegister.cshtml" />
     <Content Include="Views\Checkout\Payment.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Checkout\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

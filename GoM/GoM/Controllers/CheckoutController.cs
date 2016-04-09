@@ -21,6 +21,36 @@ namespace GoM.Controllers
         }
 
         [HttpPost]
+        public ActionResult Payment(CheckoutViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var viewingAccount = new Account { FirstName = Database.Account.FirstName, LastName = Database.Account.LastName, Email = Database.Account.Email, Address = Database.Account.Address, ShoppingCart = Database.Account.ShoppingCart };
+
+                var payment = new Payment
+                {
+                    CardNumber = user.CardNumber,
+                    ExpirationMonth = user.ExpirationMonth,
+                    ExpirationYear = user.ExpirationYear,
+                    CvcNumber = user.CvcNumber,
+                    Account = viewingAccount
+                };
+
+                foreach (var product in Database.Account.ShoppingCart.Products)
+                {
+                    var album = Database.Albums.Where(a => a.Id == product.Album.Id).First();
+                    album.InStock -= product.Quantity;
+                }
+
+                Database.Account.ShoppingCart = new ShoppingCart();
+
+                return View("Success", payment);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult ChangeQuantity()
         {
             //Hämtar id:t på albumet och skapar sedan ett album utifrån det.
@@ -40,7 +70,7 @@ namespace GoM.Controllers
                 //var product = new Product { Album = album, Quantity = quantity };
                 Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
             }
-          
+
             return RedirectToAction("Cart");
         }
     }

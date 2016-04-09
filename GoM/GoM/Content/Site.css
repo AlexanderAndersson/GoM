@@ -19,6 +19,7 @@ body {
 .cart-summary {
     border: 1px solid black;
 }
+<<<<<<< HEAD
 .margin-top-30 {
     margin-top: 30px;
 }
@@ -100,3 +101,19 @@ z-index:2001!important;
   color: green;
   cursor: pointer;
 }
+=======
+
+.product {
+    min-height: 570px;
+}
+
+.order-receipt {
+    border: 1px solid black;
+}
+
+.lightgray {
+    background-color: lightgray;
+}
+
+
+>>>>>>> master
