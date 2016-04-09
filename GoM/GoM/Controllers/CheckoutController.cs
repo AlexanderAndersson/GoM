@@ -25,13 +25,15 @@ namespace GoM.Controllers
         {
             if (ModelState.IsValid)
             {
+                var viewingAccount = new Account { FirstName = Database.Account.FirstName, LastName = Database.Account.LastName, Email = Database.Account.Email, Address = Database.Account.Address, ShoppingCart = Database.Account.ShoppingCart };
+
                 var payment = new Payment
                 {
                     CardNumber = user.CardNumber,
                     ExpirationMonth = user.ExpirationMonth,
                     ExpirationYear = user.ExpirationYear,
                     CvcNumber = user.CvcNumber,
-                    Account = Database.Account
+                    Account = viewingAccount
                 };
 
                 foreach (var product in Database.Account.ShoppingCart.Products)

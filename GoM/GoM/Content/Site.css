@@ -17,3 +17,13 @@
 .product {
     min-height: 570px;
 }
+
+.order-receipt {
+    border: 1px solid black;
+}
+
+.lightgray {
+    background-color: lightgray;
+}
+
+

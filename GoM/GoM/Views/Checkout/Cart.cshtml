@@ -51,9 +51,9 @@
                 <thead>
                     <tr>
                         <th class="col-md-2">Qty</th>
-                        <th class="col-md-5">Album</th>
-                        <th class="col-md-3">Price</th>
-                        <th class="col-md-3">Total</th>
+                        <th class="col-md-6">Album</th>
+                        <th class="col-md-2">Price</th>
+                        <th class="col-md-2">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,9 +61,9 @@
                     {
                     <tr>
                         <td class="col-md-2">@product.Quantity</td>
-                        <td class="col-md-5">@product.Album.Artist - @product.Album.Title</td>
-                        <td class="col-md-3">@product.Album.Price</td>
-                        <td class="col-md-3">@(product.Album.Price * product.Quantity) </td>
+                        <td class="col-md-6">@product.Album.Artist - @product.Album.Title</td>
+                        <td class="col-md-2">$@product.Album.Price</td>
+                        <td class="col-md-2">$@(product.Album.Price * product.Quantity) </td>
                     </tr>
                     }
                 </tbody>

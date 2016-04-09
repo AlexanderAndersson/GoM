@@ -8,8 +8,6 @@ namespace GoM.Models
 {
     public class Payment
     {
-        public Account Account { get; set; }
-
         public long CardNumber { get; set; }
 
         public int ExpirationMonth { get; set; }
@@ -17,5 +15,7 @@ namespace GoM.Models
         public int ExpirationYear { get; set; }
 
         public int CvcNumber { get; set; }
+
+        public Account Account { get; set; }
     }
 }
