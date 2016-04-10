@@ -8,7 +8,7 @@ namespace GoM.Models
 {
     public class Payment
     {
-        public long CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         public int ExpirationMonth { get; set; }
 

@@ -204,7 +204,8 @@
     <Content Include="Views\Account\LogInRegister.cshtml" />
     <Content Include="Views\Checkout\Payment.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Checkout\Success.cshtml" />
+    <Content Include="Views\Checkout\Receipt.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

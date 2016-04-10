@@ -27,9 +27,11 @@ namespace GoM.Controllers
             {
                 var viewingAccount = new Account { FirstName = Database.Account.FirstName, LastName = Database.Account.LastName, Email = Database.Account.Email, Address = Database.Account.Address, ShoppingCart = Database.Account.ShoppingCart };
 
+                var cardNumber = new String('*', 12) + user.CardNumber.ToString().Substring(12);
+
                 var payment = new Payment
                 {
-                    CardNumber = user.CardNumber,
+                    CardNumber = cardNumber,
                     ExpirationMonth = user.ExpirationMonth,
                     ExpirationYear = user.ExpirationYear,
                     CvcNumber = user.CvcNumber,
@@ -44,7 +46,7 @@ namespace GoM.Controllers
 
                 Database.Account.ShoppingCart = new ShoppingCart();
 
-                return View("Success", payment);
+                return View("Receipt", payment);
             }
 
             return View();
@@ -67,7 +69,6 @@ namespace GoM.Controllers
 
             else
             {
-                //var product = new Product { Album = album, Quantity = quantity };
                 Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
             }
 

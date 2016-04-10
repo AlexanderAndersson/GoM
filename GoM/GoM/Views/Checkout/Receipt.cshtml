@@ -1,0 +1,44 @@
+﻿@model GoM.Models.Payment
+
+@{
+    ViewBag.Title = "Order Receipt";
+}
+
+
+<div class="container margin-top-45">
+    <h3>Thank you for your purchase!</h3>
+    <h4 class="margin-bottom-45">Order number: #7823-149388</h4>
+    <div class="row">
+
+
+        @foreach (var product in Model.Account.ShoppingCart.Products)
+            {
+            <div class="col-md-3 col-sm-3 col-xs-6 product-small">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-responsive album-small" src="@product.Album.ImageSource" />
+
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>@product.Album.Artist - @product.Album.Title</strong></p>
+                        <p>Quantity: @product.Quantity</p>
+                        <p>Price: $@product.Album.Price</p>
+                        <p>Total: $@(product.Album.Price * product.Quantity)</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+    <h2 class="margin-top-45">Details</h2>
+    <p>Customer name: @Model.Account.FirstName @Model.Account.LastName</p>
+    <p>Shipping Address: @Model.Account.Address</p>
+    <p>Email Address: @Model.Account.Email</p>
+    <p>Card number: @Model.CardNumber</p>
+    <p>Total: $@Model.Account.ShoppingCart.Amount</p>
+</div>
+
+
+<p>
+    @Html.ActionLink("Continue Shopping", "Index", "Products")
+</p>

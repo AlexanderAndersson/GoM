@@ -25,14 +25,16 @@ namespace GoM.Models
             Albums.Add(new Album { Id = 4, Title = "Millennium", Genre = Genre.Pop, Artist = "Backstreet Boys", InStock = 5, NumberOfSongs = 12, Price = 29.99m, ImageSource = "/Images/BackstreetBoys.jpg" });
             Albums.Add(new Album { Id = 5, Title = "Infinite", Genre = Genre.HipHop, Artist = "Eminem", InStock = 10, NumberOfSongs = 11, Price = 19.99m, ImageSource = "/Images/EminemInfinite.jpg" });
             Albums.Add(new Album { Id = 6, Title = "Elvis The King", Genre = Genre.Rock, Artist = "Elvis Presley", InStock = 3, NumberOfSongs = 51, Price = 39.99m, ImageSource = "/Images/ElvisTheKing.jpg" });
-            Albums.Add(new Album { Id = 7, Title = "Legend", Genre = Genre.Pop, Artist = "Bob Marley", InStock = 9, NumberOfSongs = 14, Price = 49.99m, ImageSource = "/Images/BobMarley.jpg" });
+            Albums.Add(new Album { Id = 7, Title = "Legend", Genre = Genre.Reggae, Artist = "Bob Marley", InStock = 9, NumberOfSongs = 14, Price = 49.99m, ImageSource = "/Images/BobMarley.jpg" });
             Albums.Add(new Album { Id = 8, Title = "Sings America", Genre = Genre.Pop, Artist = "David Hasselhoff", InStock = 50, NumberOfSongs = 15, Price = 29.99m, ImageSource = "/Images/David.jpg" });
             Albums.Add(new Album { Id = 9, Title = "Imagine", Genre = Genre.Rock, Artist = "John Lennon", InStock = 10, NumberOfSongs = 10, Price = 29.99m, ImageSource = "/Images/JohnLennon.jpg" });
-            Albums.Add(new Album { Id = 9, Title = "Aquarium", Genre = Genre.Pop, Artist = "Aqua", InStock = 13, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Aqua.jpg" });
-            Albums.Add(new Album { Id = 9, Title = "In Utero", Genre = Genre.Grunge, Artist = "Nirvana", InStock = 12, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Nirvana.jpg" });
-            Albums.Add(new Album { Id = 9, Title = "The Chronic", Genre = Genre.HipHop, Artist = "Dr.Dre", InStock = 9, NumberOfSongs = 16, Price = 25.99m, ImageSource = "/Images/DrDre.jpeg" });
+            Albums.Add(new Album { Id = 10, Title = "Aquarium", Genre = Genre.Pop, Artist = "Aqua", InStock = 13, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Aqua.jpg" });
+            Albums.Add(new Album { Id = 11, Title = "In Utero", Genre = Genre.Grunge, Artist = "Nirvana", InStock = 12, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Nirvana.jpg" });
+            Albums.Add(new Album { Id = 12, Title = "The Chronic", Genre = Genre.HipHop, Artist = "Dr.Dre", InStock = 9, NumberOfSongs = 16, Price = 25.99m, ImageSource = "/Images/DrDre.jpeg" });
 
-            Accounts.Add(new Account { Id = 1, Email = "callesandstrom@hotmail.com", Password = "1234", FirstName = "Calle", LastName = "Sandström", Address = "Mandolingatan 41", IsAdmin = true });
+            Accounts.Add(new Account { Id = 1, Email = "teh.muzzi@gmail.com", Password = "1234", FirstName = "Mustafa", LastName = "Muhsin", Address = "Gangsta Street 69", IsAdmin = true });
+            Accounts.Add(new Account { Id = 2, Email = "alexander.andersson.9347@gmail.com", Password = "1234", FirstName = "Alexander", LastName = "Andersson", Address = "Skånegatan 30", IsAdmin = false });
+            Accounts.Add(new Account { Id = 3, Email = "callesandstrom@hotmail.com", Password = "1234", FirstName = "Calle", LastName = "Sandström", Address = "Mandolingatan 41", IsAdmin = true });
         }
     }
 }

@@ -11,36 +11,46 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row">
-                @foreach (var product in Model)
-            {
-                    <div class="col-md-6 col-sm-6 margin-top-30">
-                        <a href="#" class="thumbnail">
-                            <img src="@product.Album.ImageSource" />
-                        </a>
-                        <h3>@product.Album.Artist - @product.Album.Title</h3>
-                        <h4>Price: $@product.Album.Price</h4>
-                        <h4>Genre: @product.Album.Genre</h4>
-                        <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
-                        <p>In Stock: @product.Album.InStock</p>
-                        @if (product.Album.InStock > 0)
-                        {
-                            <form action="ChangeQuantity" method="post" class="form-inline">
-                                <div class="form-group">
-                                    <label>Qty:</label>
-                                    <input type="hidden" name="id" value="@product.Album.Id" />
-                                    <input type="number" min="0" max="@product.Album.InStock" name="quantity" value="@product.Quantity" class="form-control">
-                                    <button type="submit" class="btn btn-danger form-control"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                @if (Model.Count() > 0)
+                {
+                    foreach (var product in Model)
+                    {
 
-                                </div>
-                            </form>
-                        }
+                        <div class="col-md-6 col-sm-6 margin-top-30">
+                            <a href="#" class="thumbnail">
+                                <img src="@product.Album.ImageSource" />
+                            </a>
+                            <h3>@product.Album.Artist - @product.Album.Title</h3>
+                            <h4>Price: $@product.Album.Price</h4>
+                            <h4>Genre: @product.Album.Genre</h4>
+                            <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
+                            <p>In Stock: @product.Album.InStock</p>
+                            @if (product.Album.InStock > 0)
+                            {
+                                <form action="ChangeQuantity" method="post" class="form-inline">
+                                    <div class="form-group">
+                                        <label>Qty:</label>
+                                        <input type="hidden" name="id" value="@product.Album.Id" />
+                                        <input type="number" min="0" max="@product.Album.InStock" name="quantity" value="@product.Quantity" class="form-control">
+                                        <button type="submit" class="btn btn-danger form-control"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
 
-                        else
-                        {
-                            <h4 class="text-danger">Out of stock</h4>
-                        }
-                    </div>
+                                    </div>
+                                </form>
+                            }
+
+                            else
+                            {
+                                <h4 class="text-danger">Out of stock</h4>
+                            }
+                        </div>
+                    }
                 }
+
+                else
+                {
+                    <h3>Your cart is empty</h3>
+                }
+                
             </div>
 
 
