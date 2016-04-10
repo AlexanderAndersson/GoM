@@ -55,7 +55,7 @@ namespace GoM.Controllers
         [HttpPost]
         public ActionResult ChangeQuantity()
         {
-            //Hämtar id:t på albumet och skapar sedan ett album utifrån det.
+            //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
             var album = Database.Albums.Where(a => a.Id == id).First();
 

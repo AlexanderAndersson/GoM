@@ -12,20 +12,22 @@
         @if (Database.Account != null && Database.Account.IsAdmin == true)
         {
             <div class="col-md-12">
-                <a href="/Products/Create" class="btn btn-primary">Create new Product</a>
+                <a href="/Products/Create" class="btn btn-danger">Create new Product</a>
             </div>
         }
 
         @foreach (var album in Model)
         {
             <div class="col-md-4 col-sm-6 product">
-                <a href="#" class="thumbnail">
-                    <img src="@album.ImageSource" />
+
+                <a href="/Products/Details/@album.Id" class="thumbnail">
+                    <img src="@album.ImageSource" alt="Cover" />
                 </a>
+
                 <h3>@album.Artist - @album.Title</h3>
                 <h4>Price: $@album.Price</h4>
                 <h4>Genre: @album.Genre</h4>
-                <p>Number Of Tracks: @album.NumberOfSongs</p>
+                <p>Number of Tracks: @album.NumberOfSongs</p>
                 <p>In Stock: @album.InStock</p>
                 @if (album.InStock > 0)
                 {

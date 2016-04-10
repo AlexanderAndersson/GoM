@@ -16,14 +16,14 @@
                     @foreach (var product in Model)
                     {
 
-                        <div class="col-md-6 col-sm-6 margin-top-30">
-                            <a href="#" class="thumbnail">
-                                <img src="@product.Album.ImageSource" />
+                        <div class="col-md-4 col-sm-4 margin-top-30 cart-thumbnail">
+                            <a href="/Products/Details/@product.Album.Id" class="thumbnail">
+                                <img src="@product.Album.ImageSource" alt="Cover" />
                             </a>
                             <h3>@product.Album.Artist - @product.Album.Title</h3>
                             <h4>Price: $@product.Album.Price</h4>
                             <h4>Genre: @product.Album.Genre</h4>
-                            <p>Number Of Tracks: @product.Album.NumberOfSongs</p>
+                            <p>Number of Tracks: @product.Album.NumberOfSongs</p>
                             <p>In Stock: @product.Album.InStock</p>
                             @if (product.Album.InStock > 0)
                             {
@@ -43,7 +43,7 @@
                                 <h4 class="text-danger">Out of stock</h4>
                             }
                         </div>
-                    }
+                   
                     }
 
                 </div>

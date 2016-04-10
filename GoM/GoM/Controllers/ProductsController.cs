@@ -22,6 +22,13 @@ namespace GoM.Controllers
 
         }
 
+        public ActionResult Details(int id)
+        {
+            var album = Database.Albums.Where(a => a.Id == id).First();
+
+            return View(album);
+        }
+
         public ActionResult Edit(int id)
         {
             var album = Database.Albums.Where(a => a.Id == id).First();
@@ -81,7 +88,7 @@ namespace GoM.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCart(/*int id, string returnURL*/)
+        public ActionResult AddToCart()
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
@@ -111,18 +118,50 @@ namespace GoM.Controllers
                     Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity++;
                 }
             }
-            //för att få Searchfunktionen att fungera. Den ger tillbaka samma result även när man addat, annars går den till index.
-            //return Redirect(returnURL);
+
             return RedirectToAction("Index");
         }
 
-        //public JsonResult AutoCompleteArtist(string term)
-        //{
+        [HttpPost]
+        public ActionResult AddToCartQuantity()
+        {
+            //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
+            int id = Convert.ToInt32(Request.Form.Get("id"));
+            var album = Database.Albums.Where(a => a.Id == id).First();
 
-        //    var result = (from r in Database.Albums
-        //                  where r.Artist.ToLower().Contains(term.ToLower())
-        //                  select new { r.Artist }).Distinct();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
+            //Hämtar antalet från input
+            int quantity = Convert.ToInt32(Request.Form.Get("quantity"));
+
+            //Om det inte finns en inloggad användare...
+            if (Database.Account == null)
+            {
+                //så skickar vi användaren till logga in/registrera-sidan
+                return RedirectToAction("LogInRegister", "Account");
+            }
+
+            if (Database.Account.ShoppingCart.Products.Any(p => p.Album.Id == id))
+            {
+                if (quantity == 0)
+                {
+                    Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album == album);
+                }
+
+                else
+                {
+                    Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
+                }
+            }
+
+            else
+            {
+                if (quantity != 0)
+                {
+                    Database.Account.ShoppingCart.Products.Add(new Product { Album = album, Quantity = quantity });
+                }
+            }
+
+
+            return RedirectToAction("Details", new { id });
+        }
     }
 }

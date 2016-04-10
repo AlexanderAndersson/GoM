@@ -1,0 +1,101 @@
+﻿@using GoM.Models
+
+@model GoM.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+
+    int quantity = 1;
+
+    if (Database.Account != null)
+    {
+        quantity = @Database.Account.ShoppingCart.Products.Any(p => p.Album.Id == Model.Id) ? @Database.Account.ShoppingCart.Products.Where(p => p.Album.Id == Model.Id).First().Quantity : 1;
+    }
+}
+
+<div class="container margin-top">
+    <div class="row">
+
+        <div class="col-sm-4 col-xs-12">
+            <div>
+                <a class="thumbnail" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <a class="thumbnail blue" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <a class="thumbnail red" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <a class="thumbnail green" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-8 col-xs-12">
+            <h2>@Model.Artist - @Model.Title</h2>
+
+            @if (Database.Account != null && Database.Account.IsAdmin == true)
+            {
+                @Html.ActionLink("Edit", "Edit", new { Model.Id })
+                <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { Model.Id })
+            }
+
+            <h3>Price: $@Model.Price</h3>
+            <form action="/Products/AddToCartQuantity" method="post" class="form-inline">
+                <div class="form-group">
+                    <label>Qty:</label>
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="number" min="0" max="@Model.InStock" name="quantity" value="@quantity" class="form-control">
+                    <button type="submit" class="btn btn-danger form-control"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+
+                </div>
+            </form>
+            <hr>
+            <h4>Genre: <span class="text-green">@Model.Genre</span></h4>
+            <h4>Number of Tracks: <span class="text-green">@Model.NumberOfSongs</span></h4>
+            <hr>
+            <h4>Tracks</h4>
+            <ol>
+                @for (int i = 0; i < Model.NumberOfSongs; i++)
+                {
+                    <li>@Database.Tracks[i]</li>
+                }
+            </ol>
+        </div>
+        @if (Database.Albums.Where(a => a.Genre == Model.Genre).Count() > 1)
+        {
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <h3>People who bought this also bought...</h3>
+                <div class="row center-block">
+                    @foreach (var album in Database.Albums.Where(a => a.Genre == Model.Genre).Except(Database.Albums.Where(a => a.Id == Model.Id)))
+                {
+                        <div class="col-sm-3 col-md-3 col-xs-12 col-lg-12 thumbnail-details">
+
+                            <a href="/Products/Details/@album.Id" class="thumbnail margin-top-30">
+                                <img src="@album.ImageSource" alt="Cover" />
+                            </a>
+
+                            <p><strong>@album.Artist - @album.Title</strong></p>
+                            <p>Genre: @album.Genre</p>
+                            <h3>$@album.Price</h3>
+                            @if (album.InStock > 0)
+                            {
+                                <form action="/Products/AddToCart" method="post">
+                                    <input name="id" type="hidden" value="@album.Id" />
+                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                                </form>
+                            }
+
+                            else
+                            {
+                                <h4 class="text-danger">Out of stock</h4>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
