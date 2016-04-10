@@ -135,6 +135,7 @@
     <Content Include="Images\EminemInfinite.jpg" />
     <Content Include="Images\GreenDay.jpg" />
     <Content Include="Images\JohnLennon.jpg" />
+    <Content Include="Images\logo2.png" />
     <Content Include="Images\mj-kingofpop.jpg" />
     <Content Include="Images\Nirvana.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
