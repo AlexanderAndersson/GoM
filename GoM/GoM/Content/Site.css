@@ -104,7 +104,8 @@ body {
 }
 
 .product {
-    min-height: 570px;
+    min-height: 650px;
+    margin-top: 50px;
 }
 
 .order-receipt {

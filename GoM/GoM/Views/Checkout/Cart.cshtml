@@ -6,14 +6,14 @@
 }
 
 
+@if (Model.Count() > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row">
-                @if (Model.Count() > 0)
-                {
-                    foreach (var product in Model)
+                    @foreach (var product in Model)
                     {
 
                         <div class="col-md-6 col-sm-6 margin-top-30">
@@ -44,49 +44,51 @@
                             }
                         </div>
                     }
-                }
+                    }
 
-                else
-                {
-                    <h3>Your cart is empty</h3>
-                }
-                
+                </div>
+
+
+            </div>
+            <div class="col-md-4 cart-summary margin-top-30">
+                <h4>Summary</h4>
+                <table class="table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">Qty</th>
+                            <th class="col-md-6">Album</th>
+                            <th class="col-md-2">Price</th>
+                            <th class="col-md-2">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                            <tr>
+                                <td class="col-md-2">@product.Quantity</td>
+                                <td class="col-md-6">@product.Album.Artist - @product.Album.Title</td>
+                                <td class="col-md-2">$@product.Album.Price</td>
+                                <td class="col-md-2">$@(product.Album.Price * product.Quantity) </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <hr />
+                <p><strong>Total: $@Database.Account.ShoppingCart.Amount</strong></p>
+                <a href="/Checkout/Payment" class="btn btn-danger margin-bottom-15"><span class="glyphicon glyphicon-credit-card"></span> Complete Order</a>
             </div>
 
 
         </div>
-        <div class="col-md-4 cart-summary margin-top-30">
-            <h4>Summary</h4>
-            <table class="table-striped">
-                <thead>
-                    <tr>
-                        <th class="col-md-2">Qty</th>
-                        <th class="col-md-6">Album</th>
-                        <th class="col-md-2">Price</th>
-                        <th class="col-md-2">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var product in Model)
-                    {
-                    <tr>
-                        <td class="col-md-2">@product.Quantity</td>
-                        <td class="col-md-6">@product.Album.Artist - @product.Album.Title</td>
-                        <td class="col-md-2">$@product.Album.Price</td>
-                        <td class="col-md-2">$@(product.Album.Price * product.Quantity) </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-
-            <hr />
-            <p><strong>Total: $@Database.Account.ShoppingCart.Amount</strong></p>
-            <a href="/Checkout/Payment" class="btn btn-danger margin-bottom-15"><span class="glyphicon glyphicon-credit-card"></span> Complete Order</a>
-        </div>
-
-
     </div>
-</div>
+}
+
+else
+{
+    <h3>Your cart is empty</h3>
+}
+
 <div>
     @Html.ActionLink("Back To Products", "Index", "Products")
 </div>

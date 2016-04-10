@@ -10,11 +10,75 @@ namespace GoM.Controllers
     public class ProductsController : Controller
     {
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string SearchText)
         {
-            return View(Database.Albums);
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                var albums = Database.Albums.Where(s => s.Artist.Contains(SearchText) || s.Genre.ToString() == (SearchText) || s.Title.Contains(SearchText));
+                return View(albums.OrderBy(a => a.Id));
+            }
+
+            return View(Database.Albums.OrderBy(a => a.Id));
+
         }
 
+        public ActionResult Edit(int id)
+        {
+            var album = Database.Albums.Where(a => a.Id == id).First();
+
+            return View(album);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Album album)
+        {
+            if (ModelState.IsValid)
+            {
+                if (album.ImageSource == null)
+                {
+                    album.ImageSource = Database.Albums.Where(a => a.Id == album.Id).First().ImageSource;
+                }
+
+                Database.Albums.RemoveAll(a => a.Id == album.Id);
+                Database.Albums.Add(album);
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Database.Albums.RemoveAll(a => a.Id == id);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Album album)
+        {
+            if (ModelState.IsValid)
+            {
+                if (album.ImageSource == null)
+                {
+                    album.ImageSource = "/Images/Default.png";
+                }
+
+                album.Id = Database.Albums.Count + 1;
+
+                Database.Albums.Add(album);
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
 
         [HttpPost]
         public ActionResult AddToCart(/*int id, string returnURL*/)
@@ -51,5 +115,14 @@ namespace GoM.Controllers
             //return Redirect(returnURL);
             return RedirectToAction("Index");
         }
+
+        //public JsonResult AutoCompleteArtist(string term)
+        //{
+
+        //    var result = (from r in Database.Albums
+        //                  where r.Artist.ToLower().Contains(term.ToLower())
+        //                  select new { r.Artist }).Distinct();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

@@ -129,6 +129,7 @@
     <Content Include="Images\BackstreetBoys.jpg" />
     <Content Include="Images\BobMarley.jpg" />
     <Content Include="Images\David.jpg" />
+    <Content Include="Images\Default.png" />
     <Content Include="Images\DrDre.jpeg" />
     <Content Include="Images\ElvisTheKing.jpg" />
     <Content Include="Images\EminemInfinite.jpg" />
@@ -206,6 +207,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Checkout\Receipt.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

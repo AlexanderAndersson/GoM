@@ -2,7 +2,7 @@
     $("#SearchText").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/Search/AutoCompleteArtist",
+                url: "/Products/AutoCompleteArtist",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term },

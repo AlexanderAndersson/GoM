@@ -1,4 +1,6 @@
-﻿@model IEnumerable<GoM.Models.Album>
+﻿@using GoM.Models
+
+@model IEnumerable<GoM.Models.Album>
 
 @{
     ViewBag.Title = "Products";
@@ -6,9 +8,17 @@
 
 <div class="container">
     <div class="row">
+        
+        @if (Database.Account != null && Database.Account.IsAdmin == true)
+        {
+            <div class="col-md-12">
+                <a href="/Products/Create" class="btn btn-primary">Create new Product</a>
+            </div>
+        }
+
         @foreach (var album in Model)
-            {
-            <div class="col-md-4 col-sm-6 product margin-top-30">
+        {
+            <div class="col-md-4 col-sm-6 product">
                 <a href="#" class="thumbnail">
                     <img src="@album.ImageSource" />
                 </a>
@@ -29,8 +39,15 @@
                 {
                     <h4 class="text-danger">Out of stock</h4>
                 }
+
+                @if (Database.Account != null && Database.Account.IsAdmin == true)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { album.Id })
+                    <span> | </span>
+                    @Html.ActionLink("Delete", "Delete", new { album.Id })
+                }
             </div>
-        }
+                }
 
     </div>
 </div>
