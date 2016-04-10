@@ -163,5 +163,13 @@ namespace GoM.Controllers
 
             return RedirectToAction("Details", new { id });
         }
-    }
+        public JsonResult AutoCompleteArtist(string term)
+            {
+
+            var result = (from r in Database.Albums
+                          where r.Artist.ToLower().Contains(term.ToLower()) || r.Genre.ToString() == term || r.Title.Contains(term)
+                          select new { r.Artist, r.Title, r.Price }).Distinct();
+            return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
 }

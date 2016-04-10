@@ -37,6 +37,7 @@ body {
 .ui-autocomplete {
     position: relative;
     z-index: 2001 !important;
+     font-size:10px!important;
 }
 
 
