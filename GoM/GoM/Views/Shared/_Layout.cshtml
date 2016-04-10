@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/Home/Index">
-                    <img class="logo" src="../images/logo.png" alt="Logo">
+                    <img class="logo" src="../Images/logo2.png" style="height:auto; width:50px;" alt="Logo">
                 </a>
             </div>
 
@@ -32,19 +32,18 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/Products/Index">All Products</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Rock</a></li>
-                            <li><a href="#">Pop</a></li>
-                            <li><a href="#">Blues</a></li>
-                            <li><a href="#">Soul</a></li>
-                            <li><a href="#">Hip Hop</a></li>
-                            <li><a href="#">Reggae</a></li>
-                            <li><a href="#">Grunge</a></li>
+                            <li><a href="~/Products?SearchText=Rock">Rock</a></li>
+                            <li><a href="~/Products?SearchText=Pop">Pop</a></li>
+                            <li><a href="~/Products?SearchText=Blues">Blues</a></li>
+                            <li><a href="~/Products?SearchText=Soul">Soul</a></li>
+                            <li><a href="~/Products?SearchText=HipHop">Hip Hop</a></li>
+                            <li><a href="~/Products?SearchText=Reggae">Reggae</a></li>
+                            <li><a href="~/Products?SearchText=Grunge">Grunge</a></li>
                         </ul>
                     </li>
                     <li style="padding: 15px">
                         @*Sökrutan expanderar. Inte klar med css än men du kan flytta den var du vill*@
-                        @using(Html.BeginForm("Index", "Search", FormMethod.Get))
+                        @using(Html.BeginForm("Index", "Products", FormMethod.Get))
                             {
 
                             @Html.TextBox("SearchText", null, new { @class = "search-box" })
