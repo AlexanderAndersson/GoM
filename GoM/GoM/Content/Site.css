@@ -37,7 +37,7 @@ body {
 .ui-autocomplete {
     position: relative;
     z-index: 2001 !important;
-     font-size:10px!important;
+    font-size: 10px !important;
 }
 
 
@@ -119,4 +119,16 @@ body {
 
 .cart-thumbnail {
     min-height: 480px;
+}
+
+.red {
+    background: linear-gradient( rgba(220,63,28, 0.60), rgba(220,63,28, 0.60) )/*, url(../Images/BackInBlack.jpg)*/;
+}
+
+.green {
+    background: linear-gradient( rgba(136,167,100, 0.60), rgba(136,167,100, 0.60) )/*, url(../Images/BackInBlack.jpg)*/;
+}
+
+.blue {
+    background: linear-gradient(rgba(72,72,96, 0.60), rgba(72,72,96, 0.60) )/*,url(../Images/BackInBlack.jpg)*/;
 }
