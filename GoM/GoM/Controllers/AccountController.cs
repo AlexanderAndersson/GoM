@@ -52,8 +52,8 @@ namespace GoM.Controllers
             {
                 if (Database.Accounts.Any(a => a.Email == user.Email && a.Password == user.Password))
                 {
-                    var account = Database.Accounts.Where(a => a.Email == user.Email).First();
-                    Database.Account = account;
+                    Database.Account = Database.Accounts.Where(a => a.Email == user.Email).First();
+
                     return RedirectToAction("Index", "Products");
                 }
 
@@ -71,12 +71,32 @@ namespace GoM.Controllers
             return View();
         }
 
-        //[HttpPost]
         public ActionResult LogOff()
         {
             Database.Account = null;
 
             return RedirectToAction("Index", "Products");
+        }
+
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Manage(ManageViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                Database.Account.FirstName = user.FirstName;
+                Database.Account.LastName = user.LastName;
+                Database.Account.Email = user.Email;
+                Database.Account.Address = user.Address;
+
+                return RedirectToAction("Index", "Products");
+            }
+
+            return View();
         }
     }
 }

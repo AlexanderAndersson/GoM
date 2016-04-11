@@ -125,10 +125,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\AliceInChains.jpg" />
     <Content Include="Images\Aqua.jpg" />
     <Content Include="Images\BackInBlack.jpg" />
     <Content Include="Images\BackstreetBoys.jpg" />
     <Content Include="Images\BobMarley.jpg" />
+    <Content Include="Images\BobMarley2.jpg" />
+    <Content Include="Images\BobMarley3.jpg" />
     <Content Include="Images\David.jpg" />
     <Content Include="Images\Default.png" />
     <Content Include="Images\DrDre.jpeg" />
@@ -185,6 +188,7 @@
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\HttpParamActionAttribute.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
+    <Compile Include="Models\ManageViewModel.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -213,6 +217,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

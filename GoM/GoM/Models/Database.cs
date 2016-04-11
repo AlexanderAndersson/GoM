@@ -33,6 +33,9 @@ namespace GoM.Models
             Albums.Add(new Album { Id = 10, Title = "Aquarium", Genre = Genre.Pop, Artist = "Aqua", InStock = 13, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Aqua.jpg" });
             Albums.Add(new Album { Id = 11, Title = "In Utero", Genre = Genre.Grunge, Artist = "Nirvana", InStock = 12, NumberOfSongs = 12, Price = 19.99m, ImageSource = "/Images/Nirvana.jpg" });
             Albums.Add(new Album { Id = 12, Title = "The Chronic", Genre = Genre.HipHop, Artist = "Dr.Dre", InStock = 9, NumberOfSongs = 16, Price = 25.99m, ImageSource = "/Images/DrDre.jpeg" });
+            Albums.Add(new Album { Id = 13, Title = "Rebel Music", Genre = Genre.Reggae, Artist = "Bob Marley", InStock = 10, NumberOfSongs = 12, Price = 13.99m, ImageSource = "/Images/BobMarley2.jpg" });
+            Albums.Add(new Album { Id = 14, Title = "Island Mystic", Genre = Genre.Reggae, Artist = "Bob Marley", InStock = 12, NumberOfSongs = 15, Price = 17.99m, ImageSource = "/Images/BobMarley3.jpg" });
+            Albums.Add(new Album { Id = 15, Title = "Dirt", Genre = Genre.Grunge, Artist = "Alice In Chains", InStock = 4, NumberOfSongs = 10, Price = 13.99m, ImageSource = "/Images/AliceInChains.jpg" });
 
             Accounts.Add(new Account { Id = 1, Email = "teh.muzzi@gmail.com", Password = "1234", FirstName = "Mustafa", LastName = "Muhsin", Address = "Gangsta Street 69", IsAdmin = true });
             Accounts.Add(new Account { Id = 2, Email = "alexander.andersson.9347@gmail.com", Password = "1234", FirstName = "Alexander", LastName = "Andersson", Address = "Skånegatan 30", IsAdmin = false });
