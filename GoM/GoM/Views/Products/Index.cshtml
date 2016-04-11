@@ -6,26 +6,31 @@
     ViewBag.Title = "Products";
 }
 
-<div class="container">
+<div class="container margin-top-45">
     <div class="row">
-       
-            @if(Database.Account!=null&&Database.Account.IsAdmin==true)
-                {
-                <div class="col-md-12">
-                    <a href="/Products/Create" class="btn btn-danger">Create new Product</a>
-                </div>
-                }
-        <div class="col-md-12 dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Sort by
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li>@Html.ActionLink("Artist", "Index", new { sortOrder = ViewBag.ArtistName })</li>
-                <li role="separator" class="divider"></li>
-                <li>@Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.YearSort })</li>
-            </ul>
-        </div>
+       <div class="col-md-12">
+           <div class="row">
+               <div class="col-md-3 dropdown">
+                   <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                       Sort by
+                       <span class="caret"></span>
+                   </button>
+                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                       <li>@Html.ActionLink("Artist", "Index", new { sortOrder = ViewBag.ArtistName })</li>
+                       <li role="separator" class="divider"></li>
+                       <li>@Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.YearSort })</li>
+                   </ul>
+               </div>
+               @if (Database.Account != null && Database.Account.IsAdmin == true)
+               {
+                   <div class="col-md-3">
+                       <a href="/Products/Create" class="btn btn-default btn-block">Create new Product</a>
+                   </div>
+               }
+           </div>
+       </div>
+
+
 
         
             @foreach(var album in Model)
