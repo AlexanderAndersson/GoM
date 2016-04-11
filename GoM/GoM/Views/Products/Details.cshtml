@@ -13,21 +13,21 @@
     }
 }
 
-<div class="container margin-top">
+<div class="container margin-top-45">
     <div class="row">
 
         <div class="col-sm-4 col-xs-12">
             <div>
-                <a class="thumbnail" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+                <a class="fancybox thumbnail" rel="group" href="@Model.ImageSource" title="@Model.Artist - @Model.Title"><img src="@Model.ImageSource" alt="Cover" /></a>
             </div>
             <div class="col-sm-4 col-xs-4">
-                <a class="thumbnail blue" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+                <a class="fancybox thumbnail red" rel="group" href="@Model.ImageSource" title="@Model.Artist - @Model.Title"><img class="red" src="@Model.ImageSource" alt="Cover" /></a>
             </div>
             <div class="col-sm-4 col-xs-4">
-                <a class="thumbnail red" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+                <a class="fancybox thumbnail green" rel="group" href="@Model.ImageSource" title="@Model.Artist - @Model.Title"><img class="green" src="@Model.ImageSource" alt="Cover" /></a>
             </div>
             <div class="col-sm-4 col-xs-4">
-                <a class="thumbnail green" href="#"><img src="@Model.ImageSource" alt="Cover"></a>
+                <a class="fancybox thumbnail blue" rel="group" href="@Model.ImageSource" title="@Model.Artist - @Model.Title"><img class="blue" src="@Model.ImageSource" alt="Cover" /></a>
             </div>
 
         </div>
@@ -97,5 +97,9 @@
             </div>
         }
     </div>
+</div>
+
+<div class="margin-top-45">
+    <a href="/Products/Index" class="btn btn-default"><span class="glyphicon glyphicon-cd"></span> Back to Products</a>
 </div>
 

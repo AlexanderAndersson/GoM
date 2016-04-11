@@ -6,7 +6,7 @@
     ViewBag.Title = "Payment";
 }
 
-<div class="container">
+<div class="container margin-top-45">
     <div class="row">
         @using (Html.BeginForm())
         {
@@ -95,6 +95,6 @@
     </div>
 </div>
 
-<div>
-    @Html.ActionLink("Back To Shopping Cart", "Cart")
+<div class="margin-top-45">
+    <a href="/Checkout/Cart" class="btn btn-default"><span class="glyphicon glyphicon-cd"></span> Back to Shopping Cart</a>
 </div>

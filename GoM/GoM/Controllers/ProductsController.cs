@@ -10,15 +10,40 @@ namespace GoM.Controllers
     public class ProductsController : Controller
     {
         // GET: Products
-        public ActionResult Index(string SearchText)
-        {
-            if (!string.IsNullOrEmpty(SearchText))
+        public ActionResult Index(string SearchText, string sortOrder, string currentFilter)
+            {
+            ViewBag.CurrentSort=sortOrder;
+
+            if(!string.IsNullOrEmpty(SearchText))
             {
                 var albums = Database.Albums.Where(s => s.Artist.Contains(SearchText) || s.Genre.ToString() == (SearchText) || s.Title.Contains(SearchText));
                 return View(albums.OrderBy(a => a.Id));
             }
+            ViewBag.ArtistName=sortOrder=="Artist" ? "ArtistName_Descending" : "Artist";
+            ViewBag.YearSort=sortOrder=="Price" ? "Price_Descending" : "Price";
 
-            return View(Database.Albums.OrderBy(a => a.Id));
+            var artist = from a in Database.Albums
+                           select a;
+            switch(sortOrder)
+                {
+                case "Artist":
+                    artist=artist.OrderBy(s => s.Artist);
+                    return View(artist);
+                case "ArtistName_Descending":
+                    artist=artist.OrderByDescending(s => s.Artist);
+                    return View(artist);
+                case "Price":
+                    artist=artist.OrderBy(s => s.Price);
+                    return View(artist);
+                case "Price_Descending":
+                    artist=artist.OrderByDescending(s => s.Price);
+                    return View(artist);
+                default:  // Name ascending 
+                    artist=artist.OrderBy(s => s.Id);
+                    return View(artist);
+
+                }
+                    
 
         }
 
@@ -119,7 +144,7 @@ namespace GoM.Controllers
                 }
             }
 
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.PathAndQuery);
         }
 
         [HttpPost]
@@ -163,5 +188,13 @@ namespace GoM.Controllers
 
             return RedirectToAction("Details", new { id });
         }
-    }
+        public JsonResult AutoCompleteArtist(string term)
+            {
+
+            var result = (from r in Database.Albums
+                          where r.Artist.ToLower().Contains(term.ToLower()) || r.Genre.ToString() == term || r.Title.Contains(term)
+                          select new { r.Artist, r.Title, r.Price }).Distinct();
+            return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
 }

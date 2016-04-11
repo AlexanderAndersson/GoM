@@ -8,7 +8,7 @@
                 data: { term: request.term },
                 success: function (data) {
                     response($.map(data, function (item) {
-                        return { label: item.Artist, value: item.Artist };
+                        return { label: "Artist: " + item.Artist + " Title: " + item.Title + " Price: $" + item.Price, value: item.Artist };
                     }))
 
                 }
