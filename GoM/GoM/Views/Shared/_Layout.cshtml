@@ -26,8 +26,8 @@
                     <img class="logo" src="../Images/logo2.png" style="height:auto; width:50px;" alt="Logo">
                 </a>
             </div>
-
-            <div class="navbar-collapse collapse in" id="navbarcollapse" aria-expanded="true">
+            
+            <div class="navbar-collapse collapse" id="navbarcollapse" aria-expanded="true">
                 <ul class="nav navbar-nav navbar-left">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
@@ -47,9 +47,9 @@
                         @using(Html.BeginForm("Index", "Products", FormMethod.Get))
                             {
 
-                            @Html.TextBox("SearchText", ViewBag.CurrentFilter as string , new { @class = "search-box" })
+                            @Html.TextBox("SearchText", null, new { @class = "search-box" })
 
-                            <label for="search-box"><span class="fa fa-search search-icon"></span></label>
+                            <label for="search-box"><i class="fa fa-search search-icon"style="align-self:center;"></i></label>
                             <input type="submit" id="search-submit" />
 
                             }
@@ -57,26 +57,36 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
-                    @if (Database.Account == null)
-                    {
+                    @if(Database.Account==null)
+                        {
                         <li><a href="/Account/Register">Register</a></li>
                         <li><a href="/Account/LogIn">Log In</a></li>
-                    }
-
-                    else
-                    {
-                        <li>
-                            <a href="/Checkout/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> @Database.Account.ShoppingCart.NumberOfProducts</a>
-                        </li>
-                        <li>
-                            <a href="/Account/Manage">@Database.Account.FirstName</a>
-                        </li>
-                        <li>
-                            <a href="/Account/LogOff">Log off</a>
-                        </li>
-                    }
+                        }
+                    else{   
+                            <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> 
+                            @Database.Account.ShoppingCart.NumberOfProducts 
+                            <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach(var product in Database.Account.ShoppingCart.Products)
+                                    {
+                                    <li><span style="font-size:15px;">@product.Album.Artist</span>
+                                    <a href=""style="font-size:10px"> @product.Album.Title</a>
+                                    <span class="right" style="font-size:10px;">$@product.Album.Price</span>
+                                    </li>
+                                    }
+                                <li><a href="/Checkout/Cart" class="text-center"><i class="fa fa-shopping-basket" style="color:#f39c12;">View Cart
+                                </i></a></li>
+                            </ul>
+                        </li><li><a href="/Account/Manage">@Database.Account.FirstName</a></li>
+                        <li><a href="/Account/LogOff">Log off</a></li>
+                        }
 
                 </ul>
+
+
             </div>
         </div>
     </nav>
@@ -92,7 +102,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="~/scripts/mustafasearch.js"></script>
     <script src="~/scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+ 
     <script src="~/scripts/jquery.fancybox.pack.js"></script>
     <script src="~/scripts/fancypant.js"></script>
 
