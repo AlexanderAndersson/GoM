@@ -47,7 +47,7 @@
                         @using(Html.BeginForm("Index", "Products", FormMethod.Get))
                             {
 
-                            @Html.TextBox("SearchText", null, new { @class = "search-box" })
+                            @Html.TextBox("SearchText", ViewBag.CurrentFilter as string , new { @class = "search-box" })
 
                             <label for="search-box"><span class="fa fa-search search-icon"></span></label>
                             <input type="submit" id="search-submit" />
@@ -80,7 +80,6 @@
             </div>
         </div>
     </nav>
-
     <div class="container-fluid body-content">
         @RenderBody()
         <hr />
