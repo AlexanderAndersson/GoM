@@ -30,12 +30,12 @@ namespace GoM.Models
 
         [Required]
         [Display(Name = "Month")]
-        [RegularExpression(@"\d{2}", ErrorMessage = "Måste bestå av 2 siffror")]
+        [RegularExpression("^(0?[1-9]|1[012])$", ErrorMessage = "Ogiltig månad")]
         public int ExpirationMonth { get; set; }
 
         [Required]
         [Display(Name = "Year")]
-        [RegularExpression(@"\d{2}", ErrorMessage = "Måste bestå av 2 siffror")]
+        [RegularExpression("(1[6-9]|[2-9][0-9])", ErrorMessage = "Ogiltigt år")]
         public int ExpirationYear { get; set; }
 
         [Required]
