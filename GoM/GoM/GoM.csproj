@@ -123,7 +123,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Test.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\AliceInChains.jpg" />
