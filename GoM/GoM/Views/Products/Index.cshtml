@@ -8,48 +8,60 @@
 
 <div class="container">
     <div class="row">
+       
+            @if(Database.Account!=null&&Database.Account.IsAdmin==true)
+                {
+                <div class="col-md-12">
+                    <a href="/Products/Create" class="btn btn-danger">Create new Product</a>
+                </div>
+                }
+        <div class="col-md-12 dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Sort by
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>@Html.ActionLink("Artist", "Index", new { sortOrder = ViewBag.ArtistName })</li>
+                <li role="separator" class="divider"></li>
+                <li>@Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.YearSort })</li>
+            </ul>
+        </div>
+
         
-        @if (Database.Account != null && Database.Account.IsAdmin == true)
-        {
-            <div class="col-md-12">
-                <a href="/Products/Create" class="btn btn-danger">Create new Product</a>
-            </div>
-        }
-
-        @foreach (var album in Model)
-        {
-            <div class="col-md-4 col-sm-6 product">
-
-                <a href="/Products/Details/@album.Id" class="thumbnail">
-                    <img src="@album.ImageSource" alt="Cover" />
-                </a>
-
-                <h3>@album.Artist - @album.Title</h3>
-                <h4>Price: $@album.Price</h4>
-                <h4>Genre: @album.Genre</h4>
-                <p>Number of Tracks: @album.NumberOfSongs</p>
-                <p>In Stock: @album.InStock</p>
-                @if (album.InStock > 0)
+            @foreach(var album in Model)
                 {
-                    <form action="/Products/AddToCart" method="post">
-                        <input name="id" type="hidden" value="@album.Id" />
-                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                    </form>
+                <div class="col-md-4 col-sm-6 product">
+
+                    <a href="/Products/Details/@album.Id" class="thumbnail">
+                        <img src="@album.ImageSource" alt="Cover" />
+                    </a>
+
+                    <h3>@album.Artist - @album.Title</h3>
+                    <h4>Price: $@album.Price</h4>
+                    <h4>Genre: @album.Genre</h4>
+                    <p>Number of Tracks: @album.NumberOfSongs</p>
+                    <p>In Stock: @album.InStock</p>
+                    @if(album.InStock>0)
+                        {
+                        <form action="/Products/AddToCart" method="post">
+                            <input name="id" type="hidden" value="@album.Id" />
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                        </form>
+                        }
+
+                    else
+                        {
+                        <h4 class="text-danger">Out of stock</h4>
+                        }
+
+                    @if(Database.Account!=null&&Database.Account.IsAdmin==true)
+                        {
+                        @Html.ActionLink("Edit", "Edit", new { album.Id })
+                        <span> | </span>
+                        @Html.ActionLink("Delete", "Delete", new { album.Id })
+                        }
+                </div>
                 }
 
-                else
-                {
-                    <h4 class="text-danger">Out of stock</h4>
-                }
-
-                @if (Database.Account != null && Database.Account.IsAdmin == true)
-                {
-                    @Html.ActionLink("Edit", "Edit", new { album.Id })
-                    <span> | </span>
-                    @Html.ActionLink("Delete", "Delete", new { album.Id })
-                }
-            </div>
-                }
-
-    </div>
+        </div>
 </div>
