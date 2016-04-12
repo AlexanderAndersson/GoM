@@ -61,8 +61,8 @@
                         {
                         <li><a href="/Account/Register">Register</a></li>
                         <li><a href="/Account/LogIn">Log In</a></li>
-                        }
-                    else{   
+                    }
+                    else{
                             <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-shopping-cart"></span> 
@@ -73,9 +73,10 @@
                                 @foreach(var product in Database.Account.ShoppingCart.Products)
                                     {
                                     <li><span style="font-size:15px;">@product.Album.Artist</span>
-                                    <a href=""style="font-size:10px"> @product.Album.Title</a>
-                                    <span class="right" style="font-size:10px;">$@product.Album.Price</span>
-                                    </li>
+                                        <span style="font-size:10px;">
+                                            @product.Album.Title</span>
+                                            <span class="right" style="font-size:10px;">$@product.Album.Price</span>
+</li>
                                     }
                                 <li><a href="/Checkout/Cart" class="text-center"><i class="fa fa-shopping-basket" style="color:#f39c12;">View Cart
                                 </i></a></li>

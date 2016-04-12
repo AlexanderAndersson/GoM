@@ -40,7 +40,8 @@ namespace GoM.Controllers
 
                 foreach (var product in Database.Account.ShoppingCart.Products)
                 {
-                    var album = Database.Albums.Where(a => a.Id == product.Album.Id).First();
+                    var albums = (IEnumerable<Album>)Session["Albums"];
+                    var album = albums.Where(a => a.Id == product.Album.Id).First();
                     album.InStock -= product.Quantity;
                 }
 
@@ -57,7 +58,9 @@ namespace GoM.Controllers
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
-            var album = Database.Albums.Where(a => a.Id == id).First();
+
+            var albums = (IEnumerable<Album>)Session["Albums"];
+            var album = albums.Where(a => a.Id == id).First();
 
             //Hämtar antalet från input
             int quantity = Convert.ToInt32(Request.Form.Get("quantity"));

@@ -10,53 +10,59 @@ namespace GoM.Controllers
     public class ProductsController : Controller
     {
         // GET: Products
-        public ActionResult Index(string SearchText, string sortOrder, string currentFilter)
-            {
-            ViewBag.CurrentSort=sortOrder;
+        public ActionResult Index(string SearchText, string sortOrder)
+        {
+            ViewBag.CurrentSort = sortOrder;
 
-            if(!string.IsNullOrEmpty(SearchText))
+            var albums = (List<Album>)Session["Albums"];
+
+            if (!string.IsNullOrEmpty(SearchText))
             {
-                var albums = Database.Albums.Where(s => s.Artist.Contains(SearchText) || s.Genre.ToString() == (SearchText) || s.Title.Contains(SearchText));
+                albums = albums.Where(s => s.Artist.Contains(SearchText) || s.Genre.ToString() == (SearchText) || s.Title.Contains(SearchText)).ToList();
+                
                 return View(albums.OrderBy(a => a.Id));
             }
-            ViewBag.ArtistName=sortOrder=="Artist" ? "ArtistName_Descending" : "Artist";
-            ViewBag.YearSort=sortOrder=="Price" ? "Price_Descending" : "Price";
 
-            var artist = from a in Database.Albums
-                           select a;
-            switch(sortOrder)
-                {
+            ViewBag.ArtistName = sortOrder == "Artist" ? "ArtistName_Descending" : "Artist";
+            ViewBag.YearSort = sortOrder == "Price" ? "Price_Descending" : "Price";
+
+            var artist = from a in albums
+                         select a;
+            switch (sortOrder)
+            {
                 case "Artist":
-                    artist=artist.OrderBy(s => s.Artist);
+                    artist = artist.OrderBy(s => s.Artist);
                     return View(artist);
                 case "ArtistName_Descending":
-                    artist=artist.OrderByDescending(s => s.Artist);
+                    artist = artist.OrderByDescending(s => s.Artist);
                     return View(artist);
                 case "Price":
-                    artist=artist.OrderBy(s => s.Price);
+                    artist = artist.OrderBy(s => s.Price);
                     return View(artist);
                 case "Price_Descending":
-                    artist=artist.OrderByDescending(s => s.Price);
+                    artist = artist.OrderByDescending(s => s.Price);
                     return View(artist);
                 default:  // Name ascending 
-                    artist=artist.OrderBy(s => s.Id);
+                    artist = artist.OrderBy(s => s.Id);
                     return View(artist);
 
-                }
-                    
+            }
+
 
         }
 
         public ActionResult Details(int id)
         {
-            var album = Database.Albums.Where(a => a.Id == id).First();
+            var albums = (IEnumerable<Album>)Session["Albums"];
+            var album = albums.Where(a => a.Id == id).First();
 
             return View(album);
         }
 
         public ActionResult Edit(int id)
         {
-            var album = Database.Albums.Where(a => a.Id == id).First();
+            var albums = (IEnumerable<Album>)Session["Albums"];
+            var album = albums.Where(a => a.Id == id).First();
 
             return View(album);
         }
@@ -64,15 +70,17 @@ namespace GoM.Controllers
         [HttpPost]
         public ActionResult Edit(Album album)
         {
+            var albums = (List<Album>)Session["Albums"];
+
             if (ModelState.IsValid)
             {
                 if (album.ImageSource == null)
                 {
-                    album.ImageSource = Database.Albums.Where(a => a.Id == album.Id).First().ImageSource;
+                    album.ImageSource = albums.Where(a => a.Id == album.Id).First().ImageSource;
                 }
 
-                Database.Albums.RemoveAll(a => a.Id == album.Id);
-                Database.Albums.Add(album);
+                albums.RemoveAll(a => a.Id == album.Id);
+                albums.Add(album);
 
                 return RedirectToAction("Index");
             }
@@ -82,7 +90,8 @@ namespace GoM.Controllers
 
         public ActionResult Delete(int id)
         {
-            Database.Albums.RemoveAll(a => a.Id == id);
+            var albums = (List<Album>)Session["Albums"];
+            albums.RemoveAll(a => a.Id == id);
 
             return RedirectToAction("Index");
         }
@@ -102,9 +111,10 @@ namespace GoM.Controllers
                     album.ImageSource = "/Images/Default.png";
                 }
 
-                album.Id = Database.Albums.Count + 1;
+                var albums = (List<Album>)Session["Albums"];
+                album.Id = albums.Count + 1;
 
-                Database.Albums.Add(album);
+                albums.Add(album);
 
                 return RedirectToAction("Index");
             }
@@ -117,7 +127,9 @@ namespace GoM.Controllers
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
-            var album = Database.Albums.Where(a => a.Id == id).First();
+
+            var albums = (IEnumerable<Album>)Session["Albums"];
+            var album = albums.Where(a => a.Id == id).First();
 
             //Om albumet har behållning...
             if (album.InStock > 0)
@@ -152,7 +164,9 @@ namespace GoM.Controllers
         {
             //Hämtar id:t på albumet och hämtar sedan ett album från "databasen" utifrån det.
             int id = Convert.ToInt32(Request.Form.Get("id"));
-            var album = Database.Albums.Where(a => a.Id == id).First();
+
+            var albums = (IEnumerable<Album>)Session["Albums"];
+            var album = albums.Where(a => a.Id == id).First();
 
             //Hämtar antalet från input
             int quantity = Convert.ToInt32(Request.Form.Get("quantity"));
@@ -189,12 +203,13 @@ namespace GoM.Controllers
             return RedirectToAction("Details", new { id });
         }
         public JsonResult AutoCompleteArtist(string term)
-            {
+        {
+            var albums = (IEnumerable<Album>)Session["Albums"];
 
-            var result = (from r in Database.Albums
+            var result = (from r in albums
                           where r.Artist.ToLower().Contains(term.ToLower()) || r.Genre.ToString() == term || r.Title.Contains(term)
                           select new { r.Artist, r.Title, r.Price }).Distinct();
             return Json(result, JsonRequestBehavior.AllowGet);
-            }
         }
+    }
 }
