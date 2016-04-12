@@ -1,0 +1,32 @@
+﻿body {
+    background-image: url(/Images/albums.gif);
+    background-attachment: fixed;
+    color: white;
+}
+
+hr {
+    border: none;
+}
+
+.thumbnail {
+    background-color: #2c3e50;
+    padding: 0;
+    border: 2px solid white;
+}
+
+ol li {
+    font-size: 16px;
+}
+
+.cart-summary {
+    background-color: white;
+    color: black;
+}
+
+a {
+    color: orange;
+}
+
+a:hover, a:focus {
+    color: white;
+}

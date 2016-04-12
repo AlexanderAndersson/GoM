@@ -4,11 +4,9 @@
 
 @{
     ViewBag.Title = "Products";
-
-    //var albums = (List<Album>)Session["Albums"];
 }
 
-<div class="container margin-top-45">
+<div class="container margin-top-45 product-container">
     <div class="row">
        <div class="col-md-12">
            <div class="row">
@@ -43,9 +41,9 @@
                         <img src="@album.ImageSource" alt="Cover" />
                     </a>
 
-                    <h3><a href="?SearchText=@album.Artist" class="blacklink">@album.Artist</a> - @album.Title</h3>
+                    <h3>@album.Artist - @album.Title</h3>
                     <h4>Price: $@album.Price</h4>
-                    <h4>Genre: <a href="?SearchText=@album.Genre" class="blacklink">@album.Genre</a></h4>
+                    <h4>Genre: @album.Genre</h4>
                     <p>Number of Tracks: @album.NumberOfSongs</p>
                     <p>In Stock: @album.InStock</p>
                     @if(album.InStock>0)
@@ -72,3 +70,5 @@
 
         </div>
 </div>
+
+<link href="~/Content/mac.css" rel="stylesheet" />

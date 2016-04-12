@@ -44,6 +44,7 @@
             }
 
             <h3>Price: $@Model.Price</h3>
+            <p>In Stock: @Model.InStock</p>
             <form action="/Products/AddToCartQuantity" method="post" class="form-inline">
                 <div class="form-group">
                     <label>Qty:</label>
@@ -105,3 +106,4 @@
     <a href="/Products/Index" class="btn btn-default"><span class="glyphicon glyphicon-cd"></span> Back to Products</a>
 </div>
 
+<link href="~/Content/mac.css" rel="stylesheet" />

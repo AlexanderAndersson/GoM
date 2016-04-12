@@ -59,6 +59,7 @@ namespace GoM.Controllers
 
                 else
                 {
+                    ViewBag.Error = "Felaktig emailadress eller lösenord";
                     return View();
                 }
             }
