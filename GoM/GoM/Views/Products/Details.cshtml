@@ -11,6 +11,8 @@
     {
         quantity = @Database.Account.ShoppingCart.Products.Any(p => p.Album.Id == Model.Id) ? @Database.Account.ShoppingCart.Products.Where(p => p.Album.Id == Model.Id).First().Quantity : 1;
     }
+
+    var albums = (IEnumerable<Album>)Session["Albums"];
 }
 
 <div class="container margin-top-45">
@@ -63,12 +65,12 @@
                 }
             </ol>
         </div>
-        @if (Database.Albums.Where(a => a.Genre == Model.Genre).Count() > 1)
+        @if (albums.Where(a => a.Genre == Model.Genre).Count() > 1)
         {
             <div class="col-lg-2 col-sm-12 col-xs-12">
                 <h3>People who bought this also bought...</h3>
                 <div class="row center-block">
-                    @foreach (var album in Database.Albums.Where(a => a.Genre == Model.Genre).Except(Database.Albums.Where(a => a.Id == Model.Id)))
+                    @foreach (var album in albums.Where(a => a.Genre == Model.Genre).Except(albums.Where(a => a.Id == Model.Id)))
                 {
                         <div class="col-sm-3 col-md-3 col-xs-12 col-lg-12 thumbnail-details">
 

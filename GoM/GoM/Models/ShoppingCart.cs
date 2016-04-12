@@ -18,6 +18,6 @@ namespace GoM.Models
 
         public decimal Amount { get { return Products.Sum(p => p.Album.Price * p.Quantity); } }
 
-        public int NumberOfProducts { get { return Products.Count(); } }
+        public int NumberOfProducts { get { return Products.Sum(p => p.Quantity); } }
     }
 }
