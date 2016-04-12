@@ -8,8 +8,6 @@ namespace GoM.Models
 {
     public class Database
     {
-
-
         static public List<Account> Accounts { get; set; }
 
         static public Account Account { get; set; }
@@ -18,10 +16,7 @@ namespace GoM.Models
 
         public Database()
         {
-
             Accounts = new List<Account>();
-
-            
 
             Accounts.Add(new Account { Id = 1, Email = "teh.muzzi@gmail.com", Password = "1234", FirstName = "Mustafa", LastName = "Muhsin", Address = "Gangsta Street 69", IsAdmin = true });
             Accounts.Add(new Account { Id = 2, Email = "alexander.andersson.9347@gmail.com", Password = "1234", FirstName = "Alexander", LastName = "Andersson", Address = "Skånegatan 30", IsAdmin = false });

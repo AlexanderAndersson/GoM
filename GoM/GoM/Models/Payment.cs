@@ -8,7 +8,9 @@ namespace GoM.Models
 {
     public class Payment
     {
-        public DateTime Created { get; set; }
+        public DateTime OrderDate { get; set; }
+
+        public int OrderNumber { get; set; }
 
         public string CardNumber { get; set; }
 
@@ -19,7 +21,5 @@ namespace GoM.Models
         public int CvcNumber { get; set; }
 
         public Account Account { get; set; }
-
-        public ShoppingCart ShoppingCart { get; set; }
     }
 }

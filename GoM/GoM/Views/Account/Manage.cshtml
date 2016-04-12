@@ -6,47 +6,46 @@
     ViewBag.Title = "Edit Account";
 }
 
-<h4>My Orders</h4>
+<h4 class="margin-top-45">My Orders</h4>
+<hr />
 
-@if (Database.Account.Payments.Count > 0)
-{   
-    <section class="container">
-        <div class="row">
-            @foreach (var payment in Database.Account.Payments)
+<section class="container">
+    <div class="row">
+        @if (Database.Account.Payments.Count() > 0)
+        {
+            foreach (var payment in Database.Account.Payments)
             {
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-6">
+                <div class="col-md-3 margin-bottom-45">
+                    <p>Order Number: @payment.OrderNumber</p>
+                    <p>Order Date: @payment.OrderDate</p>
+                    <p>Order Status: Pending</p>
+                    <p>Order Total: $@payment.Account.ShoppingCart.Amount</p>
+                    <p>Shipping Address: @payment.Account.Address</p>
+                    @foreach (var product in payment.Account.ShoppingCart.Products)
+                    {
+                        <img class="product-xs" src="@product.Album.ImageSource" />
 
-                        </div>
-                        <div class="col-md-6">
-                            @foreach (var product in payment.Account.ShoppingCart.Products)
-                            {
-                                <img class="img-responsive" src="@product.Album.ImageSource" />
+                    }
 
-                            }
-                            
-                        </div>
-                    </div>
                 </div>
-                @payment.Created
-                @payment.Account.ShoppingCart.NumberOfProducts
-                @payment.Account.ShoppingCart.Amount
             }
-        </div>
-    </section>
-}
+        }
 
-else
-{
-    <h3>You have no current orders</h3>
-}
+        else
+        {
+            <h3>You have no current orders</h3>
+        }
+    </div>
+</section>
+
+
+
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal margin-top-45">
         <h4>Edit Account</h4>
         <hr />
@@ -54,7 +53,7 @@ else
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @Value= Database.Account.FirstName, @class = "form-control" } })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @Value = Database.Account.FirstName, @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>

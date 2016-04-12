@@ -7,8 +7,6 @@ namespace GoM.Models
 {
     public class Product
     {
-        public int Id { get; set; }
-
         public Album Album { get; set; }
 
         public int Quantity { get; set; }

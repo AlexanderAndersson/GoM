@@ -126,6 +126,11 @@ body {
     margin-top: 50px;
 }
 
+.product-xs {
+    height: 50px;
+    width: 50px;
+}
+
 .cart-thumbnail {
     min-height: 480px;
 }

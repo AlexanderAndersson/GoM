@@ -223,6 +223,7 @@
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

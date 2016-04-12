@@ -54,9 +54,15 @@ namespace GoM.Controllers
         public ActionResult Details(int id)
         {
             var albums = (IEnumerable<Album>)Session["Albums"];
-            var album = albums.Where(a => a.Id == id).First();
 
-            return View(album);
+            if (albums.Any(a => a.Id == id))
+            {
+                var album = albums.Where(a => a.Id == id).First();
+
+                return View(album);
+            }
+
+            return RedirectToAction ("Error");
         }
 
         public ActionResult Edit(int id)
@@ -92,6 +98,8 @@ namespace GoM.Controllers
         {
             var albums = (List<Album>)Session["Albums"];
             albums.RemoveAll(a => a.Id == id);
+
+            Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album.Id == id);
 
             return RedirectToAction("Index");
         }
@@ -202,6 +210,12 @@ namespace GoM.Controllers
 
             return RedirectToAction("Details", new { id });
         }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         public JsonResult AutoCompleteArtist(string term)
         {
             var albums = (IEnumerable<Album>)Session["Albums"];

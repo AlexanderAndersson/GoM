@@ -29,9 +29,12 @@ namespace GoM.Controllers
 
                 var cardNumber = new String('*', 12) + user.CardNumber.ToString().Substring(12);
 
+                var random = new Random();
+
                 var payment = new Payment
                 {
-                    Created = DateTime.Now,
+                    OrderDate = DateTime.Now,
+                    OrderNumber = random.Next(10000000, 999999999),
                     CardNumber = cardNumber,
                     ExpirationMonth = user.ExpirationMonth,
                     ExpirationYear = user.ExpirationYear,
@@ -42,8 +45,12 @@ namespace GoM.Controllers
                 foreach (var product in Database.Account.ShoppingCart.Products)
                 {
                     var albums = (IEnumerable<Album>)Session["Albums"];
-                    var album = albums.Where(a => a.Id == product.Album.Id).First();
-                    album.InStock -= product.Quantity;
+
+                    if (albums.Any(a => a.Id == product.Album.Id))
+                    {
+                        var album = albums.Where(a => a.Id == product.Album.Id).First();
+                        album.InStock -= product.Quantity;
+                    }
                 }
 
                 Database.Account.Payments.Add(payment);
@@ -62,22 +69,30 @@ namespace GoM.Controllers
             int id = Convert.ToInt32(Request.Form.Get("id"));
 
             var albums = (IEnumerable<Album>)Session["Albums"];
-            var album = albums.Where(a => a.Id == id).First();
 
-            //Hämtar antalet från input
-            int quantity = Convert.ToInt32(Request.Form.Get("quantity"));
-
-            if (quantity == 0)
+            if (albums.Any(a => a.Id == id))
             {
-                Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album == album);
+                var album = albums.Where(a => a.Id == id).First();
+
+                //Hämtar antalet från input
+                int quantity = Convert.ToInt32(Request.Form.Get("quantity"));
+
+                if (quantity == 0)
+                {
+                    Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album == album);
+                }
+
+                else
+                {
+                    Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
+                }
+
+                return RedirectToAction("Cart");
             }
 
-            else
-            {
-                Database.Account.ShoppingCart.Products.Where(p => p.Album == album).First().Quantity = quantity;
-            }
+            Database.Account.ShoppingCart.Products.RemoveAll(p => p.Album.Id == id);
 
-            return RedirectToAction("Cart");
+            return RedirectToAction("Error", "Products");
         }
     }
 }
