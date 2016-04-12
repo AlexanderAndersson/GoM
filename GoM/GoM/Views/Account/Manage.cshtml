@@ -6,6 +6,43 @@
     ViewBag.Title = "Edit Account";
 }
 
+<h4>My Orders</h4>
+
+@if (Database.Account.Payments.Count > 0)
+{   
+    <section class="container">
+        <div class="row">
+            @foreach (var payment in Database.Account.Payments)
+            {
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                            @foreach (var product in payment.Account.ShoppingCart.Products)
+                            {
+                                <img class="img-responsive" src="@product.Album.ImageSource" />
+
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+                @payment.Created
+                @payment.Account.ShoppingCart.NumberOfProducts
+                @payment.Account.ShoppingCart.Amount
+            }
+        </div>
+    </section>
+}
+
+else
+{
+    <h3>You have no current orders</h3>
+}
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

@@ -25,17 +25,18 @@ namespace GoM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var viewingAccount = new Account { FirstName = Database.Account.FirstName, LastName = Database.Account.LastName, Email = Database.Account.Email, Address = Database.Account.Address, ShoppingCart = Database.Account.ShoppingCart };
+                var account = new Account { FirstName = Database.Account.FirstName, LastName = Database.Account.LastName, Email = Database.Account.Email, Address = Database.Account.Address, ShoppingCart = Database.Account.ShoppingCart };
 
                 var cardNumber = new String('*', 12) + user.CardNumber.ToString().Substring(12);
 
                 var payment = new Payment
                 {
+                    Created = DateTime.Now,
                     CardNumber = cardNumber,
                     ExpirationMonth = user.ExpirationMonth,
                     ExpirationYear = user.ExpirationYear,
                     CvcNumber = user.CvcNumber,
-                    Account = viewingAccount
+                    Account = account
                 };
 
                 foreach (var product in Database.Account.ShoppingCart.Products)
@@ -45,6 +46,7 @@ namespace GoM.Controllers
                     album.InStock -= product.Quantity;
                 }
 
+                Database.Account.Payments.Add(payment);
                 Database.Account.ShoppingCart = new ShoppingCart();
 
                 return View("Receipt", payment);

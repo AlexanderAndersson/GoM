@@ -19,6 +19,7 @@ namespace GoM.Models
         public Account()
         {
             ShoppingCart = new ShoppingCart();
+            Payments = new List<Payment>();
         }
 
         [Required]
@@ -43,5 +44,7 @@ namespace GoM.Models
         public bool IsAdmin { get; set; }
 
         public ShoppingCart ShoppingCart { get; set; }
+
+        public List<Payment> Payments { get; set; }
     }
 }
