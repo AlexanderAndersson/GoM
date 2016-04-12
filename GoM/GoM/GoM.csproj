@@ -121,10 +121,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Index-style.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ac-dc.jpg" />
+    <Content Include="Images\acdc-again.jpg" />
+    <Content Include="Images\albums.gif" />
     <Content Include="Images\AliceInChains.jpg" />
     <Content Include="Images\Aqua.jpg" />
     <Content Include="Images\BackInBlack.jpg" />
@@ -142,6 +146,7 @@
     <Content Include="Images\logo2.png" />
     <Content Include="Images\mj-kingofpop.jpg" />
     <Content Include="Images\Nirvana.jpg" />
+    <Content Include="Images\rockconcert1.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
