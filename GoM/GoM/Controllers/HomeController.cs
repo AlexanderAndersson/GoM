@@ -12,7 +12,9 @@ namespace GoM.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var albums = (List<Album>)Session["Albums"];
+
+            return View(albums.Take(4));
         }
     }
 }

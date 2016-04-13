@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<GoM.Models.Album>
+
 @{
     ViewBag.Title = "Good Ol' Music";
 }
@@ -8,32 +9,23 @@
         <div id="jumbo-text" class="text-left col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <h1>Welcome To Good Ol' Music</h1>
             <p>Here we got some good old albums that's awesome</p>
+            <a href="/Products/Index" class="btn btn-custom btn-lg">Look At Products</a>
         </div>
     </div>
 </div>
 <div class="row">
     <div id="bestseller" class="jumbotron">
-        <h2>BESTSELLERS</h2><br />
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="/Products/Details/7">
-                <img class="img-responsive" src="/Images/BobMarley.jpg" />
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <a href="/Products/Details/6">
-                <img class="img-responsive" src="/Images/ElvisTheKing.jpg" />
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <a href="/Products/Details/4">
-                <img class="img-responsive" src="/Images/BackstreetBoys.jpg" />
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <a href="/Products/Details/3">
-                <img class="img-responsive" src="/Images/GreenDay.jpg" />
-            </a>
-        </div>
+        <h2>BEST SELLERS</h2><br />
+
+        @foreach (var album in Model)
+        {
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">   
+                <a href="/Products/Details/@album.Id">
+                    <img class="img-responsive" src="@album.ImageSource" />
+                </a>
+            </div>
+        }
+
     </div>
 </div>
 <div id="space" class="row">
@@ -41,7 +33,7 @@
     <p>2016 is the year to be a AC/DC fan</p>
 </div>
 <div class="row">
-    <div id="myCarousel" class="carousel slide container col-lg-7 col-md-7 col-sm-7 col-xs-7" data-ride="carousel">
+    <div class="carousel slide container-fluid col-md-12" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -49,7 +41,7 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
         <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner carousel-image" role="listbox">
             <div class="item active">
                 <img src="/Images/rockconcert1.jpg" alt="crowd">
             </div>
@@ -61,12 +53,18 @@
             </div>
         </div>
     </div>
-    <section id="konserttext" class="container-fluid col-lg-5 col-md-5 col-sm-5 col-xs-5">
-        <h2>Buy tickets now!</h2>
-        <h5>AC/DC consert in London Saturday 4th July 2016, buy your tickets now and get a free AC/DC t-shirt!</h5><br>
+    <section id="carousel-text" class="container margin-top-45 col-md-4 col-md-offset-3 col-xs-12">
+        <h2>New release, eyooow!</h2>
+        <h4>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</h4>
+        <h5>
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+        </h5>
     </section>
+    <div class="col-md-2 col-md-offset-1 col-xs-4 col-xs-offset-4 text-left margin-top-45">
+        <a href="/Products/Details/8">
+            <img class="img-responsive" src="~/Images/David.jpg" />
+        </a>
+    </div>
 </div>
 
 <link href="~/Content/Index-style.css" rel="stylesheet" />
-
-
